@@ -1,3 +1,5 @@
+import os
+
 from config import cfg
 import discord
 from discord.ext import bridge
@@ -14,4 +16,4 @@ bot.add_cog(ping.Ping(bot))
 bot.add_cog(top.Top(bot))
 bot.add_cog(showcase.Showcase(bot))
 
-bot.run(cfg['token'])
+bot.run(os.getenv('DISCORD_TOKEN'))
