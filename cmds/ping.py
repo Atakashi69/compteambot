@@ -6,5 +6,4 @@ class Ping(commands.Cog):
 
     @bridge.bridge_command(name='ping')
     async def ping(self, ctx):
-        print(type(ctx))
         await ctx.respond(f"pong! **({round(self.bot.latency * 1000)}ms)**")

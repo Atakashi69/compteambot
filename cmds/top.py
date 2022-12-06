@@ -121,18 +121,13 @@ async def getTopImage(keys_array: list, dps_array: list, top_num: int):
 
 async def getImagesData(keys_array: list):
     api_preview_url = 'https://gcsim.app/api/preview/'
-    start_t = time.perf_counter()
     with FuturesSession(max_workers=len(keys_array)) as session:
         futures = []
         for key in keys_array:
             future = session.get(f'{api_preview_url}{key}', stream=True)
             future.key = key
             futures.append(future)
-        results = []
-        for future in as_completed(futures):
-            results.append(future)
-        print(time.perf_counter() - start_t)
-        return results
+        return [future for future in as_completed(futures)]
 
 
 # return two lists, first is top simulations keys and second is top simulations dps
